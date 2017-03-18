@@ -1,0 +1,48 @@
+﻿@model SlackInvite.Models.InvitationRequestViewModel
+@{
+    ViewData["Title"] = ViewBag.TeamName + " Slack Invitation";
+}
+
+@if (ViewBag.Message != null)
+{
+    <div id="message" class="alert @((ViewBag.IsSuccess ?? true)? "alert-success" : "alert-danger") alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>@(ViewBag.MessageTitle ?? "")</strong> @ViewBag.Message
+    </div>
+}
+
+<div class="row form-container">
+    <div class="panel panel-info">
+        <div class="panel-heading">@(ViewBag.TeamName) Slack Invitation Form</div>
+        <div class="panel-body">
+            <form asp-action="Index">
+                <div class="form-horizontal">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                <input asp-for="Email" class="form-control" placeholder="Email Address"/>
+                            </div>
+                            <span asp-validation-for="Email" class="text-danger" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Get Invitation" class="btn btn-success fullsize-button" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

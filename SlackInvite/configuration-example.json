@@ -1,0 +1,6 @@
+﻿{
+  "ServiceConfiguration": {
+    "SlackTeamName": "YourSlackTeamName(http://[THIS].slack.com/)",
+    "SlackToken": "YourToken(Admin required)"
+  }
+}
